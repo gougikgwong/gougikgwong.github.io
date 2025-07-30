@@ -1,1 +1,82 @@
-myhtml
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>JG开料计算器 V1.2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #1e90ff;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 12px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1e90ff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #007acc;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>JG开料计算器 V1.2</h1>
+
+<label for="length">标签尺寸 (mm):</label>
+<input type="number" id="length" placeholder="请输入标签长度">
+
+<label for="spacing">间距 (mm):</label>
+<input type="number" id="spacing" placeholder="请输入间距">
+
+<label for="count">排列个数 (n):</label>
+<input type="number" id="count" placeholder="请输入个数">
+
+<button onclick="calculate()">计算开料尺寸</button>
+
+<div id="result">开料尺寸：-- mm</div>
+
+<script>
+function calculate() {
+    const length = parseFloat(document.getElementById('length').value);
+    const spacing = parseFloat(document.getElementById('spacing').value);
+    const count = parseInt(document.getElementById('count').value);
+
+    if (isNaN(length) || isNaN(spacing) || isNaN(count)) {
+        alert("请输入有效的数字！");
+        return;
+    }
+
+    const result = Math.ceil((length + spacing) * count - spacing + 10);
+    document.getElementById('result').innerText = `开料尺寸：${result} mm`;
+}
+</script>
+
+</body>
+</html>
